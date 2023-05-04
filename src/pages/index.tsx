@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import arabela from '../assets/arabela.jpg'
-import Singers from '../assets/singers.svg'
+import Singers from '../assets/Singers.svg'
 import Image from 'next/image'
 import {
   ArtistIcon,
