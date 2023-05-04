@@ -1,13 +1,13 @@
 import React from 'react'
-import ReactLoading from 'react-loading'
+import ReactLoading, { LoadingType } from 'react-loading'
 
 interface LoadingProps {
-  type: string
+  type: LoadingType
   color: string
 }
 
 const Loading: React.FC<LoadingProps> = ({ type, color }) => (
-  <ReactLoading type={type} color={color} height={667} width={375} />
+  <ReactLoading type={type} color={color} height={30} width={30} />
 )
 
 export default Loading
