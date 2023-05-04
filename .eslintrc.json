@@ -10,7 +10,12 @@
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
-  "overrides": [],
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "excludedFiles": "babel.config.js"
+    }
+  ],
   "parserOptions": {
     "project": "./tsconfig.json",
     "ecmaVersion": "latest",
