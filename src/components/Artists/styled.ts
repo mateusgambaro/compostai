@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const ArtistIcon = styled.div`
   display: flex;
@@ -43,5 +43,8 @@ export const Songs = styled.div`
   justify-content: center;
   align-items: center;
   align-content: center;
-`
 
+  .MuiButton-outlined {
+    border-color: ${props => props.theme.colors.secondary} !important;
+  }
+`

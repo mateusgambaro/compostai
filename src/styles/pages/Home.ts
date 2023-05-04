@@ -54,3 +54,13 @@ export const ArtistIcon = styled.div`
     font-weight: 200;
   }
 `
+
+export const Instagram = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => props.theme.colors.secondary};
+  margin-top: -20%;
+  margin-bottom: 15%;
+  border-radius: 10px;
+`

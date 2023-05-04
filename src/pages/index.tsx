@@ -6,11 +6,15 @@ import Image from 'next/image'
 import {
   ArtistIcon,
   Container,
+  Instagram,
   Page,
   TextContainer
 } from '../styles/pages/Home'
 import { GiGuitarBassHead } from 'react-icons/gi'
 import ArtistsAndSongs from '../components/Artists/ArtistAndSongs'
+import BandMembers from '../components/BandMembers/BandMembers'
+import { Button } from '@mui/material'
+import { BsInstagram } from 'react-icons/bs'
 
 const Home: React.FC = () => {
   const artistsAndSongs = [
@@ -31,6 +35,24 @@ const Home: React.FC = () => {
       songs: ['Tu vens']
     }
   ]
+
+  const bandMembers = [
+    {
+      name: 'Gustavo Faria',
+      instagram: 'gbcfaria',
+      instrument: 'Baixo'
+    },
+    {
+      name: 'João Dias',
+      instagram: 'jdays__',
+      instrument: 'Voz e Guitarra'
+    },
+    {
+      name: 'Mateus Nagy',
+      instagram: 'mateusnagy',
+      instrument: 'Bateria'
+    }
+  ]
   return (
     <Page>
       <Head>
@@ -39,11 +61,30 @@ const Home: React.FC = () => {
       <div
         style={{
           display: 'flex',
-          marginTop: '-10%'
+          marginTop: '-10%',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <Image src={arabela} alt="arabela-logo" height="300" width="300" />
+        <Instagram>
+          <Button
+            color="inherit"
+            onClick={() =>
+              window.open(
+                `https://www.instagram.com/arabela.banda`,
+                '_blank',
+                'noreferrer'
+              )
+            }
+          >
+            <BsInstagram />
+            &nbsp;&nbsp; arabela.banda
+          </Button>
+        </Instagram>
       </div>
+
       <Container>
         <TextContainer>
           <h1>
@@ -57,6 +98,7 @@ const Home: React.FC = () => {
         </ArtistIcon>
         <ArtistsAndSongs artists={artistsAndSongs} />
       </Container>
+      <BandMembers members={bandMembers} />
     </Page>
   )
 }
