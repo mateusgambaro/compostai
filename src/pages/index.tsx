@@ -64,7 +64,7 @@ const Home: React.FC = () => {
           marginTop: '-10%',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center',
+          alignItems: 'center'
         }}
       >
         <Image src={arabela} alt="arabela-logo" height="300" width="300" />
