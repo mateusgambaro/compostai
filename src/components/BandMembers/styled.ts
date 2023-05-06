@@ -23,6 +23,8 @@ export const MemberContainer = styled.div`
 
 export const ImageContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center; 
   width: 120px;
   box-shadow: 1px 2px 20px 1px black;
   height: 120px;

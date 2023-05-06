@@ -32,13 +32,13 @@ const AlertModal: React.FC<AlertModalProps> = ({
       open={open}
       onClose={handleClose}
     >
-      <ModalContainer>
+      <ModalContainer confirmed={success}>
         <MessageContainer>
           <Typography variant="h3" component="div">
             {message}
           </Typography>
           <Typography
-            variant="p"
+            variant="body1"
             style={{ fontWeight: 200, marginTop: '5%' }}
             component="div"
           >

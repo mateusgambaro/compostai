@@ -6,6 +6,7 @@ import Collapse from '@mui/material/Collapse'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import axios from 'axios'
+import Loader from '../Loader/Loader'
 import { useRouter } from 'next/router'
 
 interface ArtistsListProps {
@@ -14,6 +15,7 @@ interface ArtistsListProps {
 
 export const ArtistsAndSongs: React.FC<ArtistsListProps> = ({ artists }) => {
   const [expandedArtist, setExpandedArtist] = useState(null)
+
   const router = useRouter()
 
   const handleToggleCollapse = index => {

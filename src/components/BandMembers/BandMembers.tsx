@@ -8,6 +8,7 @@ import {
 } from './styled'
 import Image from 'next/image'
 import arabela from '../../assets/arabela.jpg'
+import gustavo_arabela from '../../assets/gustavo_arabela.png'
 import { Button } from '@mui/material'
 import { BsInstagram } from 'react-icons/bs'
 import { FaArrowRight } from 'react-icons/fa'
@@ -31,14 +32,26 @@ const BandMembers: React.FC<BandMembersProps> = ({ members }) => {
         {members.map(member => (
           <MemberContainer key={member.name}>
             <InfoContainer>
-              <ImageContainer>
-                <Image
-                  src={arabela}
-                  width="120"
-                  height="120"
-                  alt="band-member-photo"
-                ></Image>
-              </ImageContainer>
+              {member.instrument === 'Baixo' ? (
+                <ImageContainer>
+                  <Image
+                    src={gustavo_arabela}
+                    width="200"
+                    height="120"
+                    alt="band-member-photo"
+                  ></Image>
+                </ImageContainer>
+              ) : (
+                <ImageContainer>
+                  <Image
+                    src={arabela}
+                    width="120"
+                    height="120"
+                    alt="band-member-photo"
+                  ></Image>
+                </ImageContainer>
+              )}
+
               <h2>{member.name}</h2>
               <h4>{member.instrument}</h4>
               <br />
@@ -67,7 +80,7 @@ const BandMembers: React.FC<BandMembersProps> = ({ members }) => {
           width: '80%'
         }}
       />
-      <Footer/>
+      <Footer />
     </>
   )
 }

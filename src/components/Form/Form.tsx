@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, InputLabel } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import {
   Container,
   InputContainer,
@@ -11,7 +11,8 @@ import { TbHandRock } from 'react-icons/tb'
 import { GoThumbsdown } from 'react-icons/go'
 import Loading from '../Loading/Loading'
 import AlertModal from '../ConfirmedMessage/ConfirmModal'
-
+import InputMask from 'react-input-mask'
+import { useRouter } from 'next/router'
 interface FormData {
   name: string
   age: string
@@ -33,6 +34,7 @@ const FormComponent: React.FC = () => {
   const [message, setMessage] = useState('Success! Operation completed.')
   const [description, setDescription] = useState('')
   const [success, setSuccess] = useState(true)
+  const router = useRouter()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -51,6 +53,10 @@ const FormComponent: React.FC = () => {
     setDescription(
       'Agora é só curtir o show que logo tocamos sua música escolhida.'
     )
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    setTimeout(async () => {
+      await router.push('/')
+    }, 300)
   }
 
   return (
@@ -74,6 +80,7 @@ const FormComponent: React.FC = () => {
             onChange={handleChange}
             variant="outlined"
           />
+
           <StyledTextField
             required
             label="Telefone"
@@ -82,6 +89,7 @@ const FormComponent: React.FC = () => {
             onChange={handleChange}
             variant="outlined"
           />
+
           <StyledTextField
             label="Comentários"
             multiline
@@ -94,16 +102,15 @@ const FormComponent: React.FC = () => {
         </TextContainer>
         <RatingButtons>
           <Button
-            type="submit"
             onClick={() =>
               setFormData({
                 ...formData,
-                thumbsUp: true
+                thumbsUp: !formData.thumbsUp // TODO quando selecionar um, deselecionar o outro
               })
             }
             variant="contained"
             style={{
-              backgroundColor: '#C80C5D',
+              backgroundColor: `${formData.thumbsUp ? 'green' : '#C80C5D'}`,
               color: 'white',
               width: 50,
               height: 50,
@@ -113,16 +120,15 @@ const FormComponent: React.FC = () => {
             <TbHandRock size={45} />
           </Button>
           <Button
-            type="submit"
             onClick={() =>
               setFormData({
                 ...formData,
-                thumbsDown: true
+                thumbsDown: !formData.thumbsDown
               })
             }
             variant="contained"
             style={{
-              backgroundColor: '#C80C5D',
+              backgroundColor: `${formData.thumbsDown ? 'green' : '#C80C5D'}`,
               color: 'white',
               width: 50,
               height: 50,
