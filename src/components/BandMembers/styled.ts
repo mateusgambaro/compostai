@@ -14,7 +14,7 @@ export const ScrollContainer = styled.div`
 export const MemberContainer = styled.div`
   flex-shrink: 0;
   min-width: 400px;
-  padding: 0 50px 8px 50px;
+  padding: 0 50px 8px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -38,16 +38,19 @@ const Home: React.FC = () => {
 
   const bandMembers = [
     {
+      id: 1,
       name: 'Gustavo Faria',
       instagram: 'gbcfaria',
       instrument: 'Baixo'
     },
     {
+      id: 2,
       name: 'João Dias',
       instagram: 'jdays__',
       instrument: 'Voz e Guitarra'
     },
     {
+      id: 3,
       name: 'Mateus Nagy',
       instagram: 'mateusnagy',
       instrument: 'Bateria'

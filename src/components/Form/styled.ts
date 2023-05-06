@@ -14,7 +14,7 @@ export const InputContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 400px;
+  height: 500px;
   width: 80%;
   border-radius: 20px;
   margin-top: 10%;

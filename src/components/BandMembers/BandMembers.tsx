@@ -9,10 +9,14 @@ import {
 import Image from 'next/image'
 import arabela from '../../assets/arabela.jpg'
 import gustavo_arabela from '../../assets/gustavo_arabela.png'
+import mateus_arabela from '../../assets/mateus_arabela.jpg'
+import joao_arabela from '../../assets/joao_arabela.jpg'
 import { Button } from '@mui/material'
 import { BsInstagram } from 'react-icons/bs'
 import { FaArrowRight } from 'react-icons/fa'
 import Footer from '../Footer/Footer'
+import { GiDrumKit, GiGuitarBassHead } from 'react-icons/gi'
+import { TbMicrophone2 } from 'react-icons/tb'
 
 const BandMembers: React.FC<BandMembersProps> = ({ members }) => {
   return (
@@ -32,7 +36,7 @@ const BandMembers: React.FC<BandMembersProps> = ({ members }) => {
         {members.map(member => (
           <MemberContainer key={member.name}>
             <InfoContainer>
-              {member.instrument === 'Baixo' ? (
+              {member.id === 1 ? (
                 <ImageContainer>
                   <Image
                     src={gustavo_arabela}
@@ -41,18 +45,43 @@ const BandMembers: React.FC<BandMembersProps> = ({ members }) => {
                     alt="band-member-photo"
                   ></Image>
                 </ImageContainer>
+              ) : member.id === 2 ? (
+                <ImageContainer>
+                  <Image
+                    src={joao_arabela}
+                    width="200"
+                    height="180"
+                    alt="band-member-photo"
+                  ></Image>
+                </ImageContainer>
               ) : (
                 <ImageContainer>
                   <Image
-                    src={arabela}
-                    width="120"
-                    height="120"
+                    src={mateus_arabela}
+                    width="200"
+                    height="180"
                     alt="band-member-photo"
                   ></Image>
                 </ImageContainer>
               )}
 
-              <h2>{member.name}</h2>
+              {member.id === 1 ? (
+                <h2>
+                  {member.name}&nbsp;
+                  <GiGuitarBassHead />
+                </h2>
+              ) : member.id === 2 ? (
+                <h2>
+                  {member.name}&nbsp;
+                  <TbMicrophone2/>
+                </h2>
+              ) : (
+                <h2>
+                  {member.name}&nbsp;
+                  <GiDrumKit />
+                </h2>
+              )}
+
               <h4>{member.instrument}</h4>
               <br />
               <Button
