@@ -4,5 +4,6 @@ export type BandMembersProps = {
     name: string
     instagram: string
     instrument: string
+    imageUrl: string
   }[]
 }

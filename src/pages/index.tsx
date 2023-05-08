@@ -15,8 +15,13 @@ import ArtistsAndSongs from '../components/Artists/ArtistAndSongs'
 import BandMembers from '../components/BandMembers/BandMembers'
 import { Button } from '@mui/material'
 import { BsInstagram } from 'react-icons/bs'
+import { BandMembersProps } from '../components/BandMembers/types'
 
-const Home: React.FC = () => {
+type HomeProps = {
+  bandMembers: BandMembersProps['members']
+}
+
+const Home: React.FC<HomeProps> = ({ bandMembers }) => {
   const artistsAndSongs = [
     {
       artistName: 'ColdPlay',
@@ -36,26 +41,6 @@ const Home: React.FC = () => {
     }
   ]
 
-  const bandMembers = [
-    {
-      id: 1,
-      name: 'Gustavo Faria',
-      instagram: 'gbcfaria',
-      instrument: 'Baixo'
-    },
-    {
-      id: 2,
-      name: 'João Dias',
-      instagram: 'jdays__',
-      instrument: 'Voz e Guitarra'
-    },
-    {
-      id: 3,
-      name: 'Mateus Nagy',
-      instagram: 'mateusnagy',
-      instrument: 'Bateria'
-    }
-  ]
   return (
     <Page>
       <Head>
@@ -106,3 +91,34 @@ const Home: React.FC = () => {
   )
 }
 export default Home
+
+export async function getServerSideProps() {
+  const bandMembers = [
+    {
+      id: 1,
+      name: 'Gustavo Faria',
+      instagram: 'gbcfaria',
+      instrument: 'Baixo',
+      imageUrl: '/gustavo_arabela.png'
+    },
+    {
+      id: 2,
+      name: 'João Dias',
+      instagram: 'jdays__',
+      instrument: 'Voz e Guitarra',
+      imageUrl: '/joao_arabela.jpg'
+    },
+    {
+      id: 3,
+      name: 'Mateus Nagy',
+      instagram: 'mateusnagy',
+      instrument: 'Bateria',
+      imageUrl: '/mateus_arabela.jpg'
+    }
+  ]
+  return {
+    props: {
+      bandMembers
+    }
+  }
+}

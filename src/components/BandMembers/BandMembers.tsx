@@ -7,10 +7,6 @@ import {
   ScrollContainer
 } from './styled'
 import Image from 'next/image'
-import arabela from '../../assets/arabela.jpg'
-import gustavo_arabela from '../../assets/gustavo_arabela.png'
-import mateus_arabela from '../../assets/mateus_arabela.jpg'
-import joao_arabela from '../../assets/joao_arabela.jpg'
 import { Button } from '@mui/material'
 import { BsInstagram } from 'react-icons/bs'
 import { FaArrowRight } from 'react-icons/fa'
@@ -36,34 +32,21 @@ const BandMembers: React.FC<BandMembersProps> = ({ members }) => {
         {members.map(member => (
           <MemberContainer key={member.name}>
             <InfoContainer>
-              {member.id === 1 ? (
-                <ImageContainer>
-                  <Image
-                    src={gustavo_arabela}
-                    width="200"
-                    height="120"
-                    alt="band-member-photo"
-                  ></Image>
-                </ImageContainer>
-              ) : member.id === 2 ? (
-                <ImageContainer>
-                  <Image
-                    src={joao_arabela}
-                    width="200"
-                    height="180"
-                    alt="band-member-photo"
-                  ></Image>
-                </ImageContainer>
-              ) : (
-                <ImageContainer>
-                  <Image
-                    src={mateus_arabela}
-                    width="200"
-                    height="180"
-                    alt="band-member-photo"
-                  ></Image>
-                </ImageContainer>
-              )}
+              <ImageContainer>
+                <Image
+                  src={member.imageUrl}
+                  width="200"
+                  onClick={() =>
+                    window.open(
+                      `https://www.instagram.com/${member.instagram}`,
+                      '_blank',
+                      'noreferrer'
+                    )
+                  }
+                  height="120"
+                  alt="band-member-photo"
+                ></Image>
+              </ImageContainer>
 
               {member.id === 1 ? (
                 <h2>
@@ -73,7 +56,7 @@ const BandMembers: React.FC<BandMembersProps> = ({ members }) => {
               ) : member.id === 2 ? (
                 <h2>
                   {member.name}&nbsp;
-                  <TbMicrophone2/>
+                  <TbMicrophone2 />
                 </h2>
               ) : (
                 <h2>
