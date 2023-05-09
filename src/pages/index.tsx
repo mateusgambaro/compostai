@@ -25,19 +25,31 @@ const Home: React.FC<HomeProps> = ({ bandMembers }) => {
   const artistsAndSongs = [
     {
       artistName: 'ColdPlay',
-      songs: ['Viva La Vida', 'Clocks', 'Yellow']
+      songs: [
+        { id: 1, name: 'Viva La Vida' },
+        { id: 2, name: 'Clocks' },
+        { id: 3, name: 'Yellow' }
+      ]
     },
     {
       artistName: 'Pink Floyd',
-      songs: ['Time', 'Another Brick In The Wall', 'Us And Them']
+      songs: [
+        { id: 1, name: 'Time' },
+        { id: 2, name: 'Another Brick In The Wall' },
+        { id: 3, name: 'Us And Them' }
+      ]
     },
     {
       artistName: 'Red Hot Chilli Peppers',
-      songs: ['Scartissue', 'Soul To Squeeze', 'Californication']
+      songs: [
+        { id: 1, name: 'Scartissue' },
+        { id: 2, name: 'Soul To Squeeze' },
+        { id: 3, name: 'Californication' }
+      ]
     },
     {
       artistName: 'Alceu Valença',
-      songs: ['Tu vens']
+      songs: [{ id: 1, name: 'Tu vens' }]
     }
   ]
 

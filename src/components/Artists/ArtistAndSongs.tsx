@@ -5,9 +5,9 @@ import Button from '@mui/material/Button'
 import Collapse from '@mui/material/Collapse'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
-import axios from 'axios'
-import Loader from '../Loader/Loader'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import { saveSongRequest } from '../../store/actions/songs'
 
 interface ArtistsListProps {
   artists: ArtistType[]
@@ -15,6 +15,7 @@ interface ArtistsListProps {
 
 export const ArtistsAndSongs: React.FC<ArtistsListProps> = ({ artists }) => {
   const [expandedArtist, setExpandedArtist] = useState(null)
+  const dispatch = useDispatch()
 
   const router = useRouter()
 
@@ -23,19 +24,7 @@ export const ArtistsAndSongs: React.FC<ArtistsListProps> = ({ artists }) => {
   }
 
   const handleSongClick = async song => {
-    const teste = {
-      user_name: 'demasi',
-      email: 'jarbinha@gmail.com',
-      song_name: song
-    }
-
-    // TODO colocar um loading quando estiver enviando a música
-    // Save and send the song to the database here
-    console.log(`Selected song: ${song}`)
-    // await axios.post(
-    //   'https://11dsf3r6r6.execute-api.us-east-1.amazonaws.com/stage',
-    //   teste
-    // )
+    dispatch(saveSongRequest(song))
     await router.push('/Forms')
   }
   return (
@@ -69,7 +58,7 @@ export const ArtistsAndSongs: React.FC<ArtistsListProps> = ({ artists }) => {
                   // eslint-disable-next-line @typescript-eslint/no-misused-promises
                   onClick={() => handleSongClick(song)}
                 >
-                  {song}
+                  {song.name}
                 </Button>
               </Songs>
             ))}

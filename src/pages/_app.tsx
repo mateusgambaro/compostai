@@ -6,6 +6,7 @@ import theme from '../styles/theme'
 import NProgress from 'nprogress'
 import { Router } from 'next/router'
 import Head from 'next/head'
+import { storeWrapper } from '../store'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   Router.events.on('routeChangeStart', url => {
@@ -35,4 +36,4 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   )
 }
 
-export default MyApp
+export default storeWrapper.withRedux(MyApp)

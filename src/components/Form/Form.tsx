@@ -12,15 +12,24 @@ import { TbHandRock } from 'react-icons/tb'
 import { GoThumbsdown } from 'react-icons/go'
 import Loading from '../Loading/Loading'
 import AlertModal from '../ConfirmedMessage/ConfirmModal'
-import InputMask from 'react-input-mask'
 import { useRouter } from 'next/router'
 import Loader from '../Loader/Loader'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
 interface FormData {
   name: string
   age: string
   phone: string
+  comments?: string
   thumbsUp: boolean
   thumbsDown: boolean
+}
+
+interface RootState {
+  songs: {
+    id: string
+    name: string
+  }
 }
 
 const maskPhone = (phone: string) => {
@@ -38,6 +47,7 @@ const FormComponent: React.FC = () => {
     name: '',
     age: '',
     phone: '',
+    comments: '',
     thumbsUp: false,
     thumbsDown: false
   })
@@ -48,6 +58,8 @@ const FormComponent: React.FC = () => {
   const [success, setSuccess] = useState(true)
   const router = useRouter()
 
+  const song = useSelector((state: RootState) => state.songs)
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     const newValue = name === 'phone' ? maskPhone(value) : value
@@ -57,18 +69,25 @@ const FormComponent: React.FC = () => {
   const handleClose = () => {
     setOpen(false)
   }
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
+    const endpoint =
+      'https://11dsf3r6r6.execute-api.us-east-1.amazonaws.com/stage'
     event.preventDefault()
     setIsLoading(true)
-    console.log('Form data submitted:', formData)
+    const { name, phone, age, comments, thumbsDown, thumbsUp } = formData
+    const body = {
+      song_name: song.name,
+      user_name: name,
+      age,
+      phone,
+      comments
+    }
+    await axios.post(endpoint, body)
+    setIsLoading(false)
     setMessage(`Valeu, ${formData.name}!`)
     setDescription(
       'Agora é só curtir o show que logo tocamos sua música escolhida.'
     )
-    setTimeout(async () => {
-      setOpen(true)
-      setIsLoading(false)
-    }, 2000)
     setTimeout(async () => {
       await router.push('/')
     }, 8000)
@@ -121,6 +140,9 @@ const FormComponent: React.FC = () => {
               <InputLabel style={{ color: '#d9d9d9' }}>Comentários</InputLabel>
               <StyledTextField
                 InputLabelProps={{ shrink: false }}
+                name="comments"
+                value={formData.comments}
+                onChange={handleChange}
                 multiline
                 rows={4}
                 placeholder="Deixe uma mensagem para a banda :) (Opcional)"
