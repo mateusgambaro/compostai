@@ -84,13 +84,14 @@ const FormComponent: React.FC = () => {
     }
     await axios.post(endpoint, body)
     setIsLoading(false)
+    setOpen(true)
     setMessage(`Valeu, ${formData.name}!`)
     setDescription(
       'Agora é só curtir o show que logo tocamos sua música escolhida.'
     )
     setTimeout(async () => {
       await router.push('/')
-    }, 8000)
+    }, 5000)
   }
 
   return (

@@ -35,7 +35,7 @@ const BandMembers: React.FC<BandMembersProps> = ({ members }) => {
               <ImageContainer>
                 <Image
                   src={member.imageUrl}
-                  width="200"
+                  width="250"
                   onClick={() =>
                     window.open(
                       `https://www.instagram.com/${member.instagram}`,
@@ -43,7 +43,7 @@ const BandMembers: React.FC<BandMembersProps> = ({ members }) => {
                       'noreferrer'
                     )
                   }
-                  height="120"
+                  height="150"
                   alt="band-member-photo"
                 ></Image>
               </ImageContainer>
