@@ -21,8 +21,7 @@ interface FormData {
   age: string
   phone: string
   comments?: string
-  thumbsUp: boolean
-  thumbsDown: boolean
+  rating: boolean
 }
 
 interface RootState {
@@ -32,6 +31,7 @@ interface RootState {
   }
 }
 
+//
 const maskPhone = (phone: string) => {
   const regexPhone = phone.replace(/\D/g, '').replace(/(\d{2})(\d)/, '($1) $2')
 
@@ -48,8 +48,7 @@ const FormComponent: React.FC = () => {
     age: '',
     phone: '',
     comments: '',
-    thumbsUp: false,
-    thumbsDown: false
+    rating: null
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [open, setOpen] = useState(false)
@@ -74,13 +73,14 @@ const FormComponent: React.FC = () => {
       'https://11dsf3r6r6.execute-api.us-east-1.amazonaws.com/stage'
     event.preventDefault()
     setIsLoading(true)
-    const { name, phone, age, comments, thumbsDown, thumbsUp } = formData
+    const { name, phone, age, comments, rating } = formData
     const body = {
       song_name: song.name,
       user_name: name,
       age,
       phone,
-      comments
+      comments,
+      rating
     }
     await axios.post(endpoint, body)
     setIsLoading(false)
@@ -158,13 +158,12 @@ const FormComponent: React.FC = () => {
               onClick={() =>
                 setFormData(prevFormData => ({
                   ...prevFormData,
-                  thumbsUp: !prevFormData.thumbsUp,
-                  thumbsDown: false
+                  rating: true
                 }))
               }
               variant="contained"
               style={{
-                backgroundColor: `${formData.thumbsUp ? 'green' : '#C80C5D'}`,
+                backgroundColor: `${formData.rating ? 'green' : '#C80C5D'}`,
                 color: 'white',
                 width: 50,
                 height: 50,
@@ -177,13 +176,14 @@ const FormComponent: React.FC = () => {
               onClick={() =>
                 setFormData(prevFormData => ({
                   ...prevFormData,
-                  thumbsUp: false,
-                  thumbsDown: !prevFormData.thumbsDown
+                  rating: false
                 }))
               }
               variant="contained"
               style={{
-                backgroundColor: `${formData.thumbsDown ? 'green' : '#C80C5D'}`,
+                backgroundColor: `${
+                  formData.rating || formData.rating === null ? '#C80C5D' : 'green'
+                }`,
                 color: 'white',
                 width: 50,
                 height: 50,
