@@ -27,7 +27,8 @@ interface FormData {
 interface RootState {
   songs: {
     id: string
-    name: string
+    song: string
+    artist: string
   }
 }
 
@@ -58,6 +59,7 @@ const FormComponent: React.FC = () => {
   const router = useRouter()
 
   const song = useSelector((state: RootState) => state.songs)
+  console.log('SONG', song)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -75,13 +77,15 @@ const FormComponent: React.FC = () => {
     setIsLoading(true)
     const { name, phone, age, comments, rating } = formData
     const body = {
-      song_name: song.name,
+      song_name: song.song,
+      artist_name: song.artist,
       user_name: name,
       age,
       phone,
       comments,
       rating
     }
+    console.log('BODY', body)
     await axios.post(endpoint, body)
     setIsLoading(false)
     setOpen(true)
@@ -182,7 +186,9 @@ const FormComponent: React.FC = () => {
               variant="contained"
               style={{
                 backgroundColor: `${
-                  formData.rating || formData.rating === null ? '#C80C5D' : 'green'
+                  formData.rating || formData.rating === null
+                    ? '#C80C5D'
+                    : 'green'
                 }`,
                 color: 'white',
                 width: 50,

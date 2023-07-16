@@ -3,7 +3,8 @@ import { SAVE_SONG_REQUEST } from '../../actions'
 
 const initialState = {
   id: 0,
-  name: ''
+  name: '',
+  artist: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,7 +12,7 @@ const reducer = (state = initialState, action) => {
     case HYDRATE:
       return { ...state, ...action.payload }
     case SAVE_SONG_REQUEST:
-      return { ...state, ...action.payload }
+      return {...action.payload }
     default:
       return state
   }

@@ -23,8 +23,8 @@ export const ArtistsAndSongs: React.FC<ArtistsListProps> = ({ artists }) => {
     setExpandedArtist(expandedArtist === index ? null : index)
   }
 
-  const handleSongClick = async song => {
-    dispatch(saveSongRequest(song))
+  const handleSongClick = async (song, artist) => {
+    dispatch(saveSongRequest(song, artist))
     await router.push('/Forms')
   }
   return (
@@ -56,7 +56,7 @@ export const ArtistsAndSongs: React.FC<ArtistsListProps> = ({ artists }) => {
                     width: 300
                   }}
                   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                  onClick={() => handleSongClick(song)}
+                  onClick={() => handleSongClick(song.name, artist.artistName)}
                 >
                   {song.name}
                 </Button>
