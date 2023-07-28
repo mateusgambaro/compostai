@@ -59,7 +59,6 @@ const FormComponent: React.FC = () => {
   const router = useRouter()
 
   const song = useSelector((state: RootState) => state.songs)
-  console.log('SONG', song)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -72,20 +71,19 @@ const FormComponent: React.FC = () => {
   }
   const handleSubmit = async (event: React.FormEvent) => {
     const endpoint =
-      'https://11dsf3r6r6.execute-api.us-east-1.amazonaws.com/stage'
+      'https://4x26pxitic.execute-api.us-east-1.amazonaws.com/Stage/songs'
     event.preventDefault()
     setIsLoading(true)
     const { name, phone, age, comments, rating } = formData
     const body = {
       song_name: song.song,
-      artist_name: song.artist,
+      // artist: song.artist,
       user_name: name,
       age,
       phone,
       comments,
       rating
     }
-    console.log('BODY', body)
     await axios.post(endpoint, body)
     setIsLoading(false)
     setOpen(true)

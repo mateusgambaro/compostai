@@ -56,7 +56,7 @@ export const ArtistsAndSongs: React.FC<ArtistsListProps> = ({ artists }) => {
                     width: 300
                   }}
                   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                  onClick={() => handleSongClick(song.name, artist.artistName)}
+                  onClick={() => handleSongClick(song.name, artist.id)}
                 >
                   {song.name}
                 </Button>

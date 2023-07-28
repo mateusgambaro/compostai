@@ -24,6 +24,7 @@ type HomeProps = {
 const Home: React.FC<HomeProps> = ({ bandMembers }) => {
   const artistsAndSongs = [
     {
+      id: 1,
       artistName: 'ColdPlay',
       songs: [
         { id: 1, name: 'Viva La Vida' },
@@ -32,6 +33,7 @@ const Home: React.FC<HomeProps> = ({ bandMembers }) => {
       ]
     },
     {
+      id: 2,
       artistName: 'Pink Floyd',
       songs: [
         { id: 1, name: 'Time' },
@@ -40,6 +42,7 @@ const Home: React.FC<HomeProps> = ({ bandMembers }) => {
       ]
     },
     {
+      id: 3,
       artistName: 'Red Hot Chilli Peppers',
       songs: [
         { id: 1, name: 'Scartissue' },
@@ -48,6 +51,7 @@ const Home: React.FC<HomeProps> = ({ bandMembers }) => {
       ]
     },
     {
+      id: 4,
       artistName: 'Alceu Valença',
       songs: [{ id: 1, name: 'Tu vens' }]
     }
