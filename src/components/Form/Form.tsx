@@ -71,13 +71,13 @@ const FormComponent: React.FC = () => {
   }
   const handleSubmit = async (event: React.FormEvent) => {
     const endpoint =
-      'https://4x26pxitic.execute-api.us-east-1.amazonaws.com/Stage/songs'
+      'https://7v8jzscb3a.execute-api.us-east-1.amazonaws.com/Stage/songs'
     event.preventDefault()
     setIsLoading(true)
     const { name, phone, age, comments, rating } = formData
     const body = {
       song_name: song.song,
-      // artist: song.artist,
+      artist: song.artist,
       user_name: name,
       age,
       phone,
