@@ -1,7 +1,6 @@
-export type ArtistType = {
+export type CompostType = {
   id: number
-  artistName: string
-  songs: Songs[]
+  name: string
 }
 
 export type Songs = {

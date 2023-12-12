@@ -16,24 +16,25 @@ export const ArtistIcon = styled.div`
   }
 `
 
-export const ArtistsContainer = styled.div`
-  display: flex;
-  width: 80%;
-  margin-top: 5%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+export const SpacesContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around; // or 'space-between' or 'center'
+align-items: center;
+width: 80%; // Ensures the container takes full width
+margin-top: 10%;
 `
 
-export const Artists = styled.div`
+export const Spaces = styled.div`
   display: flex;
-  width: 80%;
-  margin-top: 5%;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  align-content: center;
+  margin: 5px; // This is the margin between the buttons
+
+  & > Button { // This targets the Button component inside Spaces
+    width: 100%; // Button should take up the full width of Spaces
+  }
+}
 `
 export const Songs = styled.div`
   display: flex;

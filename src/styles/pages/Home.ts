@@ -16,6 +16,7 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  margin-top: 8%;
   align-items: center;
   justify-content: center;
   color: ${props => props.theme.colors.text};

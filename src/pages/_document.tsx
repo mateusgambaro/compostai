@@ -47,7 +47,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
 
-          <link rel="icon" href="../assets/arabela.jpg" />
+          <link rel="icon" href="../assets/compostai.png" />
         </Head>
         <body>
           <Main />

@@ -1,6 +1,6 @@
 import { SAVE_SONG_REQUEST } from '..'
 
-export const saveSongRequest = (song: string, artist: string) => ({
+export const saveSongRequest = (name: string) => ({
   type: SAVE_SONG_REQUEST,
-  payload: { song, artist }
+  payload: { name }
 })

@@ -1,140 +1,79 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import arabela from '../assets/arabela.jpg'
-import Singers from '../assets/Singers.svg'
 import Image from 'next/image'
+import compostai from '../assets/compostai.png'
 import {
   ArtistIcon,
   Container,
-  Instagram,
   Page,
   TextContainer
 } from '../styles/pages/Home'
-import { GiGuitarBassHead } from 'react-icons/gi'
-import ArtistsAndSongs from '../components/Artists/ArtistAndSongs'
-import BandMembers from '../components/BandMembers/BandMembers'
-import { Button } from '@mui/material'
-import { BsInstagram } from 'react-icons/bs'
+import { CompostSpaces } from '../components/Artists/ArtistAndSongs'
 import { BandMembersProps } from '../components/BandMembers/types'
+import { Button } from '@mui/material'
 
 type HomeProps = {
   bandMembers: BandMembersProps['members']
 }
 
-const Home: React.FC<HomeProps> = ({ bandMembers }) => {
-  const artistsAndSongs = [
+const Home: React.FC<HomeProps> = () => {
+  const compostingTypes = [
     {
       id: 1,
-      artistName: 'ColdPlay',
-      songs: [
-        { id: 1, name: 'Viva La Vida' },
-        { id: 2, name: 'Clocks' },
-        { id: 3, name: 'Yellow' }
-      ]
+      name: 'Casa'
     },
     {
       id: 2,
-      artistName: 'Pink Floyd',
-      songs: [
-        { id: 1, name: 'Time' },
-        { id: 2, name: 'Another Brick In The Wall' },
-        { id: 3, name: 'Us And Them' }
-      ]
+      name: 'Apartamento'
     },
     {
       id: 3,
-      artistName: 'Red Hot Chilli Peppers',
-      songs: [
-        { id: 1, name: 'Scartissue' },
-        { id: 2, name: 'Soul To Squeeze' },
-        { id: 3, name: 'Californication' }
-      ]
+      name: 'Sítio/ Chácara'
     },
     {
       id: 4,
-      artistName: 'Alceu Valença',
-      songs: [{ id: 1, name: 'Tu vens' }]
+      name: 'Restaurante'
     }
   ]
 
   return (
     <Page>
       <Head>
-        <title>Arabela App</title>
+        <title>Compostai</title>
       </Head>
       <div
         style={{
           display: 'flex',
-          marginTop: '-10%',
+          marginTop: '10%',
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center'
         }}
       >
-        <Image src={arabela} alt="arabela-logo" height="300" width="300" />
-        <Instagram>
-          <Button
-            color="inherit"
-            onClick={() =>
-              window.open(
-                `https://www.instagram.com/arabela.banda`,
-                '_blank',
-                'noreferrer'
-              )
-            }
-          >
-            <BsInstagram />
-            &nbsp;&nbsp; arabela.banda
-          </Button>
-        </Instagram>
+        <Image src={compostai} alt="compostai-logo" height="90" width="200" />
       </div>
 
       <Container>
         <TextContainer>
-          <h1>
-            Você pede, <br /> nós tocamos! <GiGuitarBassHead />
-          </h1>
-          <p>Escolha uma das músicas do nosso repertório e é só aguardar.</p>
+          <h1>Aprenda a montar a composteira ideal para você.</h1>
+          <p>Selecione qual seu espaço e quantas pessoas moram com você.</p>
         </TextContainer>
-        <ArtistIcon>
-          <Singers />
-          <p>Artistas</p>
-        </ArtistIcon>
-        <ArtistsAndSongs artists={artistsAndSongs} />
+        <CompostSpaces composts={compostingTypes} />
+        <Button
+          variant="contained"
+          onClick={() => console.log('cliquei')}
+          style={{
+            backgroundColor: '#E65045',
+            color: 'white',
+            width: 135,
+            height: 40,
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: '20px'
+          }}
+        >Montar</Button>
       </Container>
-      <BandMembers members={bandMembers} />
     </Page>
   )
 }
 export default Home
-
-export async function getServerSideProps() {
-  const bandMembers = [
-    {
-      id: 1,
-      name: 'Gustavo Faria',
-      instagram: 'gbcfaria',
-      instrument: 'Baixo',
-      imageUrl: '/gustavo_arabela.png'
-    },
-    {
-      id: 2,
-      name: 'João Dias',
-      instagram: 'jdays__',
-      instrument: 'Voz e Guitarra',
-      imageUrl: '/joao_arabela.jpg'
-    },
-    {
-      id: 3,
-      name: 'Mateus Nagy',
-      instagram: 'mateusnagy',
-      instrument: 'Bateria',
-      imageUrl: '/mateus_arabela.jpg'
-    }
-  ]
-  return {
-    props: {
-      bandMembers
-    }
-  }
-}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Artists, ArtistsContainer, Songs } from './styled'
-import { ArtistType } from './types'
+import { Spaces, SpacesContainer } from './styled'
+import { CompostType } from './types'
 import Button from '@mui/material/Button'
 import Collapse from '@mui/material/Collapse'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -8,65 +8,87 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { saveSongRequest } from '../../store/actions/songs'
+import HouseIcon from '../../assets/house.svg'
+import FarmIcon from '../../assets/farm.svg'
+import ShopIcon from '../../assets/shop.svg'
+import AptoIcon from '../../assets/apto.svg'
+import { Select } from 'antd'
 
-interface ArtistsListProps {
-  artists: ArtistType[]
+interface CompostProps {
+  composts: CompostType[]
 }
 
-export const ArtistsAndSongs: React.FC<ArtistsListProps> = ({ artists }) => {
-  const [expandedArtist, setExpandedArtist] = useState(null)
+export const CompostSpaces: React.FC<CompostProps> = ({ composts }) => {
   const dispatch = useDispatch()
 
   const router = useRouter()
 
-  const handleToggleCollapse = index => {
-    setExpandedArtist(expandedArtist === index ? null : index)
-  }
-
-  const handleSongClick = async (song, artist) => {
-    dispatch(saveSongRequest(song, artist))
+  const handleSongClick = async compost => {
+    dispatch(saveSongRequest(compost))
     await router.push('/Forms')
   }
+
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`)
+  }
+
   return (
-    <ArtistsContainer>
-      {artists.map((artist, index) => (
-        <Artists>
+    <SpacesContainer>
+      {composts.map((compost, index) => (
+        <Spaces>
           <Button
             variant="contained"
-            onClick={() => handleToggleCollapse(index)}
+            onClick={() => console.log('cliquei')}
             style={{
-              backgroundColor: '#C80C5D',
+              backgroundColor: '#299966',
               color: 'white',
-              width: 300
+              width: 135,
+              height: 120,
+              display: 'flex',
+              flexDirection: 'column'
             }}
-            endIcon={
-              expandedArtist === index ? <ExpandLessIcon /> : <ExpandMoreIcon />
-            }
           >
-            {artist.artistName}
+            {compost.name === 'Casa' && (
+              <HouseIcon
+                style={{ width: '50px', height: '50px', marginBottom: '10px' }}
+              />
+            )}
+            {compost.name === 'Sítio/ Chácara' && (
+              <FarmIcon
+                style={{ width: '50px', height: '50px', marginBottom: '2px' }}
+              />
+            )}
+            {compost.name === 'Apartamento' && (
+              <AptoIcon
+                style={{ width: '50px', height: '50px', marginBottom: '10px' }}
+              />
+            )}
+            {compost.name === 'Restaurante' && (
+              <ShopIcon
+                style={{ width: '50px', height: '50px', marginBottom: '10px' }}
+              />
+            )}
+            {compost.name}
           </Button>
-          <Collapse in={expandedArtist === index}>
-            {artist.songs.map((song, songIndex) => (
-              <Songs>
-                <Button
-                  variant="outlined"
-                  style={{
-                    display: 'flex',
-                    color: 'white',
-                    width: 300
-                  }}
-                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                  onClick={() => handleSongClick(song.name, artist.id)}
-                >
-                  {song.name}
-                </Button>
-              </Songs>
-            ))}
-          </Collapse>
-        </Artists>
+        </Spaces>
       ))}
-    </ArtistsContainer>
+      <Select
+        defaultValue="Quantidade de pessoas"
+        style={{
+          width: 220,
+          marginTop: '20px',
+          height: '50px',
+          fontWeight: 'bold'
+        }}
+        onChange={handleChange}
+        options={[
+          { value: 'small', label: '1-4 Pessoas' },
+          { value: 'medium', label: '4-6 Pessoas' },
+          { value: 'large', label: '6-8 Pessoas' }
+        ]}
+      />
+    </SpacesContainer>
   )
 }
 
-export default ArtistsAndSongs
+export default CompostSpaces
