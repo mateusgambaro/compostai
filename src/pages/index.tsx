@@ -58,21 +58,6 @@ const Home: React.FC = () => {
           <p>Selecione qual seu espaço e quantas pessoas moram com você.</p>
         </TextContainer>
         <CompostSpaces composts={compostingTypes} />
-        <Button
-          variant="contained"
-          onClick={() => console.log('cliquei')}
-          style={{
-            backgroundColor: '#E65045',
-            color: 'white',
-            width: 135,
-            height: 40,
-            display: 'flex',
-            flexDirection: 'column',
-            marginTop: '20px'
-          }}
-        >
-          Montar
-        </Button>
         <FloatButton
           className="meuBotaoPersonalizado"
           icon={<QuestionCircleOutlined />}
@@ -82,8 +67,10 @@ const Home: React.FC = () => {
         />
         <Modal
           title="Mais informações"
+          centered
           open={isModalVisible}
           onCancel={() => setIsModalVisible(false)}
+          style={{padding: '20px 30px'}}
           footer={null}
         >
           <Button onClick={handleCompostingInfo}>O que é compostagem?</Button>

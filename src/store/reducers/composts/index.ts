@@ -1,17 +1,16 @@
 import { HYDRATE } from 'next-redux-wrapper'
-import { SAVE_SONG_REQUEST } from '../../actions'
+import { SAVE_COMPOST_DATA } from '../../actions'
 
 const initialState = {
-  id: 0,
   name: '',
-  artist: ''
+  quantity: ''
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case HYDRATE:
       return { ...state, ...action.payload }
-    case SAVE_SONG_REQUEST:
+    case SAVE_COMPOST_DATA:
       return {...action.payload }
     default:
       return state
