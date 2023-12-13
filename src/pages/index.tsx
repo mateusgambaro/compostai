@@ -1,22 +1,31 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
-import compostai from '../assets/compostai.png'
-import {
-  ArtistIcon,
-  Container,
-  Page,
-  TextContainer
-} from '../styles/pages/Home'
-import { CompostSpaces } from '../components/Artists/ArtistAndSongs'
-import { BandMembersProps } from '../components/BandMembers/types'
+import { Container, Page, TextContainer } from '../styles/pages/Home'
+import { CompostSpaces } from '../components/Spaces/spaces'
 import { Button } from '@mui/material'
+import Header from '../components/Header/Header'
+import { FloatButton, Modal } from 'antd'
+import { QuestionCircleOutlined } from '@ant-design/icons'
+import { useRouter } from 'next/router'
 
-type HomeProps = {
-  bandMembers: BandMembersProps['members']
-}
+const Home: React.FC = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
 
-const Home: React.FC<HomeProps> = () => {
+  const router = useRouter()
+
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleCompostingInfo = async () => {
+    await router.push('/composting-info')
+  }
+
+  const handleDownloadPdf = () => {
+    window.location.href = 'urlDoPdf'
+  }
+
   const compostingTypes = [
     {
       id: 1,
@@ -41,18 +50,8 @@ const Home: React.FC<HomeProps> = () => {
       <Head>
         <title>Compostai</title>
       </Head>
-      <div
-        style={{
-          display: 'flex',
-          marginTop: '10%',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
-        <Image src={compostai} alt="compostai-logo" height="90" width="200" />
-      </div>
 
+      <Header />
       <Container>
         <TextContainer>
           <h1>Aprenda a montar a composteira ideal para você.</h1>
@@ -71,7 +70,25 @@ const Home: React.FC<HomeProps> = () => {
             flexDirection: 'column',
             marginTop: '20px'
           }}
-        >Montar</Button>
+        >
+          Montar
+        </Button>
+        <FloatButton
+          className="meuBotaoPersonalizado"
+          icon={<QuestionCircleOutlined />}
+          type="primary"
+          style={{ right: 24 }}
+          onClick={showModal}
+        />
+        <Modal
+          title="Mais informações"
+          open={isModalVisible}
+          onCancel={() => setIsModalVisible(false)}
+          footer={null}
+        >
+          <Button onClick={handleCompostingInfo}>O que é compostagem?</Button>
+          <Button onClick={handleDownloadPdf}>O que posso compostar?</Button>
+        </Modal>
       </Container>
     </Page>
   )

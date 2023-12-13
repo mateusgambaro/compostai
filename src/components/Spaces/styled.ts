@@ -21,7 +21,7 @@ display: flex;
 flex-wrap: wrap;
 justify-content: space-around; // or 'space-between' or 'center'
 align-items: center;
-width: 80%; // Ensures the container takes full width
+width: 82%; // Ensures the container takes full width
 margin-top: 10%;
 `
 

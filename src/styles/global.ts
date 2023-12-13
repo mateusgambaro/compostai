@@ -12,4 +12,8 @@ body {
     color: ${props => props.theme.colors.text};
     font: 400 16px Outfit, sans-serif;
 }
+
+.meuBotaoPersonalizado .ant-float-btn-body {
+    background-color: #009688 !importante;
+  }
 `
