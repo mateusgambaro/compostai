@@ -21,11 +21,10 @@ const CompostProcess: React.FC = () => {
   const router = useRouter()
 
   const { composts } = useSelector((state: RootState) => state)
-  console.log('🚀 ~ file: Form.tsx:62 ~ song:', composts)
 
   return (
     <>
-      <h1>{composts.CompostData.name}</h1>
+      <h1>PROCESSO</h1>
     </>
   )
 }
