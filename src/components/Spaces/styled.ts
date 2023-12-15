@@ -34,7 +34,7 @@ export const Spaces = styled.div`
   & > Button { // This targets the Button component inside Spaces
     width: 100%; // Button should take up the full width of Spaces
   }
-}
+
 `
 export const Songs = styled.div`
   display: flex;

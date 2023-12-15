@@ -5,6 +5,7 @@ import Header from '../Header/Header'
 import DimensionCard from '../DimensionCard/DimensionCard'
 import { MainContainer } from './styled'
 import vermi from '../../assets/vermi.png' // Substitua com o caminho correto da sua imagem
+import VermiCompostagem from '../TypeProcess/VermiCompostagem/VermiCompostagem'
 
 interface RootState {
   composts: {
@@ -104,6 +105,9 @@ const CompostProcess: React.FC = () => {
           humus={dimensionInfo.humus}
           dailyColect={dimensionInfo.dailyColect}
         />
+        {
+          compostType === 'Vermicompostagem' && <VermiCompostagem/>
+        }
       </MainContainer>
     </>
   )
