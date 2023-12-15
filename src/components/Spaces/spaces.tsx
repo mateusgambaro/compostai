@@ -27,6 +27,7 @@ export const CompostSpaces: React.FC<CompostProps> = ({ composts }) => {
     name: '',
     quantity: ''
   })
+  const [selectedCompost, setSelectedCompost] = useState<string | null>(null);
 
   const router = useRouter()
 
@@ -37,6 +38,14 @@ export const CompostSpaces: React.FC<CompostProps> = ({ composts }) => {
       quantity: value
     }))
   }
+
+  const handleSelectCompost = (name: string) => {
+    setCompostData(prevState => ({
+      ...prevState,
+      name
+    }));
+    setSelectedCompost(name);
+  };
 
   const handleSubmit = async () => {
     dispatch(saveCompostRequest(compostData))
@@ -50,14 +59,10 @@ export const CompostSpaces: React.FC<CompostProps> = ({ composts }) => {
         <Spaces key={index}>
           <Button
             variant="contained"
-            onClick={() => {
-              setCompostData(prevState => ({
-                ...prevState,
-                name: compost.name
-              }))
-            }}
+            onClick={() => handleSelectCompost(compost.name)}
+
             style={{
-              backgroundColor: '#299966',
+              backgroundColor: selectedCompost === compost.name ? '#1d543b' : '#299966',
               color: 'white',
               width: 135,
               height: 120,

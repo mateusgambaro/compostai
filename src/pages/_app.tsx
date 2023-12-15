@@ -6,7 +6,8 @@ import theme from '../styles/theme'
 import NProgress from 'nprogress'
 import { Router } from 'next/router'
 import Head from 'next/head'
-import { storeWrapper } from '../store'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistor, storeWrapper } from '../store'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   Router.events.on('routeChangeStart', url => {
@@ -17,6 +18,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     NProgress.done(false)
   })
   NProgress.configure({ showSpinner: false })
+
   return (
     <>
       <Head>
@@ -29,8 +31,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         />
       </Head>
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-        <GlobalStyle />
+        <PersistGate loading={null} persistor={persistor}>
+          <Component {...pageProps} />
+          <GlobalStyle />
+        </PersistGate>
       </ThemeProvider>
     </>
   )

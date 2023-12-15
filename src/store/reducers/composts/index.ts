@@ -1,14 +1,17 @@
 import { HYDRATE } from 'next-redux-wrapper'
 import { SAVE_COMPOST_DATA } from '../../actions'
+import { REHYDRATE } from 'redux-persist'
 
 const initialState = {
-  name: '',
-  quantity: ''
+  CompostData: {
+    name: '',
+    quantity: ''
+  }
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case HYDRATE:
+    case REHYDRATE:
       return { ...state, ...action.payload }
     case SAVE_COMPOST_DATA:
       return {...action.payload }
